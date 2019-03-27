@@ -1,0 +1,14 @@
+GET /s?wd=unexpected+%27%7B%27+in+field+name&rsv_spt=1&rsv_iqid=0xb0ee9ba3000572f5&issp=1&f=8&rsv_bp=0&rsv_idx=2&ie=utf-8&rqlang=&tn=baiduhome_pg&ch=&rsv_enter=1&inputT=214 HTTP/1.1
+Host: www.baidu.com
+Connection:close
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: https://www.baidu.com/
+Accept-Encoding:gzip,deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie:BIDUPSID=48216F46EC06DDC69C78325D9834C486; PSTM=1536547715; BD_UPN=12314753; BDUSS=3otTnlXRW9jVlpVa05lSWFzTk1od3FJeDBYY2VUOXUyUkM5TzVhTkNYWW0tZk5iQVFBQUFBJCQAAAAAAAAAAAEAAAATQicpYXNkMTA2NzUzMDQ2MQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZszFsmbMxbM; __cfduid=d2335777305866d1e85481028874ce05f1540553482; ISSW=1; ISSW=1; BAIDUID=97D516DC067D7D8B1EF7CC08AC5379D0:FG=1; MCITY=-58111%3A61059%3A60880%3A61109%3A61105%3A218%3A; H_PS_PSSID=1468_21102_28722_28558_28697_28584_28518_28626_28605; sug=3; sugstore=1; bdime=0; H_PS_645EC=eb29uQVyqO%2FY%2BYUjTb5mWr0YdyfOq8FzwJynn1E%2FEilqOtMPdMLVFLOcUbEWW5CbEZr8; ORIGIN=2; BDSVRTM=0
+
+aa=a&b=123{a"}<img=0 onerror=alert(1)>&c=¡ì¡ì

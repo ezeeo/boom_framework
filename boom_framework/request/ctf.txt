@@ -1,0 +1,11 @@
+GET /¡ì¡ì.txt HTTP/1.1
+Host: 56cf1f41971e4d9e92a12b1a557da170672dc750ccc64eb1.changame.ichunqiu.com
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: UM_distinctid=16980785cb71fd-0da3ffbb6c2b33-9333061-1fa400-16980785cb866c; pgv_pvi=2282234880; chkphone=acWxNpxhQpDiAchhNuSnEqyiQuDIO0O0O; pgv_si=s8711242752; Hm_lvt_2d0601bd28de7d49818249cf35d95943=1552975531,1553166572,1553317004,1553391987; ci_session=c2091199a21ae6d9f39275cad5deeed1d7cc6a11; Hm_lpvt_2d0601bd28de7d49818249cf35d95943=1553599747; token=¡ì¡ì; __jsluid=bdb19451ebf22516c1a1376242355798
+Connection: close
+
