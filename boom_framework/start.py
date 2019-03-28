@@ -58,27 +58,32 @@ class boom_task():
         else:
             with open(self.request,'r',encoding='utf-8') as f:t=f.read()
             #获取调用str
-            self.request=(self.__get_call_str(t.strip().split('\n')[0]),compile(t,'<string>', 'exec'))
+            self.request=(self.__get_call_str(t.strip().split('\n')[0],True),compile(t,'<string>', 'exec'))
         #设置generator
         with open(self.generator,'r',encoding='utf-8') as f:t=f.read()
-        self.generator=(self.__get_call_str(t.strip().split('\n')[0]),compile(t,'<string>', 'exec'))
+        self.generator=(self.__get_call_str(t.strip().split('\n')[0],False),compile(t,'<string>', 'exec'))
 
         if self.result_analyzer:
             with open(self.result_analyzer,'r',encoding='utf-8') as f:t=f.read()
-            self.result_analyzer=(self.__get_call_str(t.strip().split('\n')[0]),compile(t,'<string>', 'exec'))
+            self.result_analyzer=(self.__get_call_str(t.strip().split('\n')[0],False),compile(t,'<string>', 'exec'))
 
         if self.obfuscator:
             with open(self.obfuscator,'r',encoding='utf-8') as f:t=f.read()
-            self.obfuscator=(self.__get_call_str(t.strip().split('\n')[0]).replace('()','({})'),compile(t,'<string>', 'exec'))
+            self.obfuscator=(self.__get_call_str(t.strip().split('\n')[0],False).replace('()','({})'),compile(t,'<string>', 'exec'))
 
     #从首行提取调用字符串
-    def __get_call_str(self,first_line):
+    def __get_call_str(self,first_line,is_request):
         if first_line[:3]!='def' or first_line[-2:]!='):' or first_line.find('(')==-1:
             raise Exception('request method check fail')
         if first_line.count(',')!=0:
-            return first_line[4:first_line.find('(')]+'({})'
-        else:
+            if is_request:
+                return first_line[4:first_line.find('(')]+ '('+','.join(['{}' for i in range(first_line.count(',')+1)])+')'
+            else:
+                return first_line[4:first_line.find('(')]+'({})'
+        elif first_line.find('()')!=-1:
             return first_line[4:first_line.find('(')]+'()'
+        else:
+            return first_line[4:first_line.find('(')]+'({})'
 
 
     def run_task(self):
@@ -97,19 +102,21 @@ class boom_task():
 
 if __name__ == "__main__":
     #设置请求转换器
-    c='rawtorequests.py'
+    #c='rawtorequests.py'
+    c=None
     #设置请求
-    r='ctf.txt'
+    r='xiangqi.py'
     #设置payload生成器
-    g='ctfgen.py'
+    g='xiangqi.py'
     #设置请求结果分析器
-    re='ctfana.py'
+    re='xiangqi.py'
     #设置混淆器
     #o='testobfu.py'
     o=None
     #设置传输器
     t='muti_thread_http.py'
     #t='single_thread_http.py'
+
 
     b=boom_task(c,r,g,re,o,t)
     b.run_task()#启动

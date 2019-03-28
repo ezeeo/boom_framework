@@ -46,7 +46,7 @@ class transmitter():
                 payl=eval(self.obfuscator_func[0].format('pay'))
             else:
                 payl=pay
-            exec('('+','.join(var_list)+')=payl')#解包
+            exec('('+','.join(var_list)+',)=payl')#解包
             #形成请求调用语句
 
             func=self.request_func[0].format(','.join(var_list))

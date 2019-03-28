@@ -32,8 +32,11 @@ class transmitter_thread():
 
     #添加任务
     def add_payloads(self,payload):
-        for p in payload:
-            self.payload_queue.put(p)
+        if isinstance(payload,list):
+            for p in payload:
+                self.payload_queue.put(p)
+        else:
+            self.payload_queue.put(payload)
 
     def join(self):
         self.lock.acquire()
@@ -75,7 +78,7 @@ class transmitter_thread():
                 payl=eval(self.obfuscator_func[0].format('pay'))
             else:
                 payl=pay
-            exec('('+','.join(var_list)+')=payl')#解包
+            exec('('+','.join(var_list)+',)=payl')#解包
             #形成请求调用语句
 
             func=self.request_func[0].format(','.join(var_list))
@@ -119,19 +122,25 @@ class transmitter():
         pay_end=False
         while True:
             for payload in ge:
+                if payload==None:
+                    continue
+                elif isinstance(payload,str):
+                    raise Exception('paylaod must tuple')
                 tmp_pay.append(payload)
                 ge.send(None)#多线程模式无反馈
-                if len(tmp_pay)>5*len(threads):break
+                if len(tmp_pay)>=5*len(threads):break
             else:
                 pay_end=True
             #写入任务
             if not pay_end:
                 for i in range(len(threads)):
                     threads[i].add_payloads(tmp_pay[i*5:(i+1)*5])
+                    tmp_pay.clear()
             else:
                 t_index=0
                 for pay in tmp_pay:
-                    threads[0].add_payloads(pay)
+                    threads[t_index].add_payloads(pay)
+                    t_index+=1
                     t_index=t_index%len(threads)
                 break
         for i in range(len(threads)):
@@ -141,5 +150,5 @@ class transmitter():
 
 
 def get_transmitter(req_func,gen_func,resultanalyzer_func,obf_func):#必须要一个这个名称的函数,并且返回的对象具有run方法
-    trans=transmitter(req_func,gen_func,resultanalyzer_func,obf_func)
+    trans=transmitter(req_func,gen_func,resultanalyzer_func,obf_func,10)
     return trans
