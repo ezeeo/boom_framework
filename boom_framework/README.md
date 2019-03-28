@@ -16,12 +16,16 @@
     yield (x,) #生成的payload必须为元组(成对↓出现)
     a=yield    #必须有接受结果反馈的语句(成对↑出现)
 
-    4.结果分析器(可选,位于 result_analyzer 目录,是一个有两个参数的函数,第一个参数为payload,第二个参数为请求的返回数据,示例见noneana.py)
+    4.结果分析器(可选,位于 result_analyzer 目录,是一个有两个参数的函数,第一个参数为payload,第二个参数为请求的返回数据,
+    示例见noneana.py)
 
     5.混淆器(可选,位于 obfuscator 目录,是一个有一个参数的函数,传入传出payload,必须是元组,示例见noneobfu.py)
 
-    6.传输器(必须,位于 transmitter 目录,有一个发送请求的类,和一个get_transmitter(req_func,gen_func,resultanalyzer_func,obf_func)方法,例子见single_thread_http.py(单线程http发送器)和muti_thread_http.py(多线程http发送器))
-    get_transmitter接受四个函数的元组(调用形式,code class)(顺序不能错),调用形式类似test({},{}),get_transmitter返回的对象必须具有同步的run方法。
+    6.传输器(必须,位于 transmitter 目录,有一个发送请求的类,
+    和一个get_transmitter(req_func,gen_func,resultanalyzer_func,obf_func)方法,
+    例子见single_thread_http.py(单线程http发送器)和muti_thread_http.py(多线程http发送器))
+    get_transmitter接受四个函数的元组(调用形式,code class)(顺序不能错),调用形式类似test({},{}),
+    get_transmitter返回的对象必须具有同步的run方法。
 
 
 ## 使用自带模块的示例
@@ -48,3 +52,4 @@
 ## 注意
     建议生成器,请求(非原始请求),结果分析器,混淆器内只有一个函数且函数头位于文件第一行！
 
+## [地址](https://github.com/ezeeo/boom_framework "boom_framework")

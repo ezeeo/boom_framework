@@ -108,8 +108,8 @@ if __name__ == "__main__":
     #o='testobfu.py'
     o=None
     #设置传输器
-    #t='muti_thread_http.py'
-    t='single_thread_http.py'
+    t='muti_thread_http.py'
+    #t='single_thread_http.py'
 
     b=boom_task(c,r,g,re,o,t)
     b.run_task()#启动

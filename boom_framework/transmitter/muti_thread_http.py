@@ -94,7 +94,7 @@ class transmitter_thread():
 
 class transmitter():
     '''
-    多线程发http,无反馈,不能生成器不能获得请求的结果
+    多线程发http,无反馈,生成器不能获得请求的结果
     '''
     def __init__(self,req_func,gen_func,resultanalyzer_func=None,obf_func=None,thread_num=20):
         self.request_func=req_func
@@ -120,7 +120,7 @@ class transmitter():
         while True:
             for payload in ge:
                 tmp_pay.append(payload)
-                ge.send(None)
+                ge.send(None)#多线程模式无反馈
                 if len(tmp_pay)>5*len(threads):break
             else:
                 pay_end=True

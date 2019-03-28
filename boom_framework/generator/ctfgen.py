@@ -1,10 +1,13 @@
 def gen():
-    f=open('G:/python/boom_framework/generator/md5.txt','r',encoding='utf-8')
-    md5=f.read()
+    print('load generator...',end='')
+    f=open('G:/python/boom_framework/generator/pass.txt','r',encoding='utf-8')
+    passw=f.read()
     f.close()
-    md5=md5.strip().split('\n')
-    yield ('1','hello')
-    a=yield
-    for m in md5:
-        yield (m,'')
+    passw=passw.strip().split('\n')
+    print('done')
+    num=1
+    for p in passw:
+        if num%100==0:print('{}|{}'.format(num,len(passw)),end='')
+        yield (p,)
+        num+=1
         a=yield

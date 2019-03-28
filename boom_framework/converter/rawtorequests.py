@@ -57,12 +57,18 @@ def read_req(file_path):
         if raw_line[:4]=='Host':
             line=raw_line.split(':')
             #检查格式
-            if len(line)!=2:
-                print("\n[!]format error in line {}:':' num must 1, but now is {}".format(txt_dic[raw_line],len(line)-1))
+            if len(line)==3:
+                print("\n[!]format warn in line {}:':' num should be 1, but now is {}, it may not be a common port".format(txt_dic[raw_line],len(line)-1))
+                url=line[1].strip()+':'+line[2].strip()+uri
+                txt.remove(raw_line)
+                break
+            elif len(line)==2:
+                url=line[1].strip()+uri
+                txt.remove(raw_line)
+                break
+            else:
+                print("\n[!]format error in line {}:':' num must be 1 or 2, but now is {}".format(txt_dic[raw_line],len(line)-1))
                 return False
-            url=line[1].strip()+uri
-            txt.remove(raw_line)
-            break
     if url=='':#创建url失败
         print("\n[!]Missing data:must have Host")
         return False
@@ -269,12 +275,9 @@ def convert(file,extra_var):
         return create_method(first_line,url,req_method,header,cookies,req_body,extra_var)
     else:
         return False
-'''
+
+
 if __name__ == "__main__":
-    a=convert('c:\\Users\\yun\\Desktop\\1.txt',None)
-    import requests
-    exec(a[1])
-    func=a[0].format(','.join(["'a'","'b'","'c'"]))
-    r=eval(func)
-    print(r)
-'''
+    a=convert('G:\\python\\boom_framework\\request\\ctf.txt',None)
+    
+    print(a)
